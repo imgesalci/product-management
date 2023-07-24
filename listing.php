@@ -1,10 +1,12 @@
+<!DOCTYPE html>
 <?php
 include('inserting.php');
     $query = "SELECT * FROM products WHERE isDeleted = 1";
     $result = $conn->query($query);
     
 ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
     <table border="1" style="width:100%" cellspacing="0" cellpadding="10">
     <tr>
         <th>ID</th>
@@ -31,25 +33,24 @@ include('inserting.php');
     <td><?php echo $data['ürün_resmi']; ?> </td>
     <td><?php echo $data['stok_durumu']; ?> </td>
     <td><button name="update"></button> </td>
-    <td><form action="" method="post" ><button class='btn' type="button" name='delete' onclick="myfunc()">sil</button></form></td>
+    <td><form action="" method="post" ><button class='btn' type="button" name='delete' data-id="<?php echo $data['id']; ?>" onclick="myfunc()">sil</button></form></td>
 
     <tr>
     <script>
         function myfunc(){
             var buttons = document.getElementsByClassName('btn');
-            for (var i=0 ; i <= buttons.length ; i++){
+            for (var i=0 ; i < buttons.length ; i++){
                 (function(index){
                     buttons[index].onclick = function(){
-                        var id = index + 1;
-                        console.log(id);
-                        alert ("button: " + id);
+                        var id = buttons[index].getAttribute('data-id');
+                        console.log(id); 
                             $.ajax({  
                             type: 'POST',  
                             contentType: 'application/json; charset=utf-8',
-                            url: 'deleting.php', 
-                            data: {id: index },
-                                success: function(response) {
-                                    content.html(response);
+                            url: '/project/deleting.php', 
+                            data: {id: id },
+                                success: function(response) {    
+                                    $('#output').html(response);
                                 },
                                 error: function(xhr, status, error){
                                     console.error(xhr);
@@ -67,5 +68,4 @@ include('inserting.php');
         <td colspan="6">No data found</td>
         </tr>
     <?php } ?>
-    </table
-?>
+    </table>

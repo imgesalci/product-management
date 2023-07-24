@@ -12,7 +12,7 @@ if (!$conn) {die("Connection failed: ".mysqli_connect_error());}
 
 function checkEmpty(&$parameter){
   if(empty($parameter)){
-    $parameter .= null;
+    $parameter = null;
   }
 }
 if (isset($_POST['submit']))
