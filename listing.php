@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include('inserting.php');
     $query = "SELECT * FROM products WHERE isDeleted = 1";
@@ -7,6 +6,7 @@ include('inserting.php');
 ?>  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="/project/passing.js"></script>
+    <script src="/project/update.js"></script>
     <table border="1" style="width:100%" cellspacing="0" cellpadding="10">
     <tr>
         <th>ID</th>
@@ -16,8 +16,7 @@ include('inserting.php');
         <th>KDV Oranı</th>
         <th>Ürün Resmi</th>
         <th>Stok Durumu</th>
-        <th>Güncelle</th>
-        <th>Sil</th>
+
     </tr>
     <?php
     if ($result->num_rows > 0) {
@@ -26,14 +25,19 @@ include('inserting.php');
     ?>
     <tr>
     <td><?php echo $sn; ?> </td>
-    <td><?php echo $data['ürün_adı']; ?> </td>
-    <td><?php echo $data['alış_fiyatı']; ?> </td>
-    <td><?php echo $data['satış_fiyatı']; ?> </td>
-    <td><?php echo $data['kdv_oranı']; ?> </td>
-    <td><?php echo $data['ürün_resmi']; ?> </td>
-    <td><?php echo $data['stok_durumu']; ?> </td>
-    <td><button name="update"></button> </td>
-    <td><form action="" method="post" ><button class='btn' type="button" name='delete' data-id="<?php echo $data['id']; ?>">sil</button></form></td>
+                <td class="editable" data-column="ürün_adı"><?php echo $data['ürün_adı']; ?></td>
+                <td class="editable" data-column="alış_fiyatı"><?php echo $data['alış_fiyatı']; ?></td>
+                <td class="editable" data-column="satış_fiyatı"><?php echo $data['satış_fiyatı']; ?></td>
+                <td class="editable" data-column="kdv_oranı"><?php echo $data['kdv_oranı']; ?></td>
+                <td class="editable" data-column="ürün_resmi"><?php echo $data['ürün_resmi']; ?></td>
+                <td class="editable" data-column="stok_durumu"><?php echo $data['stok_durumu']; ?></td>
+                <td><button class="edit" data-id="<?php echo $data['id']; ?>">Update</button></td>
+                <td>
+                <td>
+                    <form action="" method="post">
+                        <button class='btn' type="button" name='delete' data-id="<?php echo $data['id']; ?>">Sil</button>
+                    </form>
+                </td>
 
     <tr>
     <?php

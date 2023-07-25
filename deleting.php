@@ -6,7 +6,6 @@ include('listing.php'); // Adjust the filename if needed.
 // Ensure that $_POST['id'] exists and is a valid integer.
 if (isset($_POST['id'])) {
     $index = intval($_POST['id']); // Convert to integer for safety.
-    echo 'index';
     // Validate $index to prevent invalid or negative values.
     if ($index >= 0) {
         // Sanitize $index using mysqli_real_escape_string().
