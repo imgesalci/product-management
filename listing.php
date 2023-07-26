@@ -31,7 +31,7 @@ include('inserting.php');
                 <td class="editable" data-column="kdv_oranı"><?php echo $data['kdv_oranı']; ?></td>
                 <td class="editable" data-column="ürün_resmi"><?php echo $data['ürün_resmi']; ?></td>
                 <td class="editable" data-column="stok_durumu"><?php echo $data['stok_durumu']; ?></td>
-                <td><button class="edit" data-id="<?php echo $data['id']; ?>">Update</button></td>
+                <td><button class="edit" data-id="<?php echo $data['id']; ?>">Güncelle</button></td>
                 <td>
                 <td>
                     <form action="" method="post">
