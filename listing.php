@@ -5,7 +5,7 @@ include('inserting.php');
     
 ?>  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="/project/passing.js"></script>
+    <script src="/project/delete.js"></script>
     <script src="/project/update.js"></script>
     <table border="1" style="width:100%" cellspacing="0" cellpadding="10">
     <tr>
