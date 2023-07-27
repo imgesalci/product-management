@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 26 Tem 2023, 09:48:28
+-- Üretim Zamanı: 27 Tem 2023, 16:46:20
 -- Sunucu sürümü: 10.4.28-MariaDB
 -- PHP Sürümü: 8.2.4
 
@@ -53,20 +53,20 @@ INSERT INTO `products` (`id`, `ürün_adı`, `alış_fiyatı`, `satış_fiyatı`
 (8, 'laptop', 0, 0, 0, '', 3000, 1),
 (9, 'şişe', 5, 0, 0.3, 'sise.jpg', 0, 0),
 (10, 'tabak', 0, 0, 0, '', 10000, 1),
-(14, 'pipet', 0, 0, 0, '', 0, 0),
-(15, 'video oynatıcısı', 300, 4000, 0.5, 'vo.jpg', 0, 1),
-(18, 'kutu', 0, 0, 0, '', 0, 0),
-(19, 'kapı', 0, 0, 0, '', 0, 0),
-(30, 'kalem', 0, 0, 0, 'kalem.jpeg', 0, 1),
-(31, 'operator', 0, 0, 0, '', 0, 0),
-(32, 'megafon', 0, 0, 0, '', 0, 1),
-(39, 'kılıf', 0, 0, 0, '', 10, 0),
-(43, 'mouse', 200, 1000, 0.4, '', 0, 1),
-(44, 'fan', 0, 0, 0.7, '', 0, 0),
-(45, 'fan', 100, 300, 0, '', 0, 1),
-(46, 'kumanda', 20, 150, 0.4, 'k.png', 400000, 1),
-(47, 'mouse', 200, 1000, 0.4, '', 0, 0),
-(49, 'modem', 20, 300, 0, '', 4000, 1);
+(11, 'pipet', 0, 0, 0, '', 0, 0),
+(12, 'video oynatıcısı', 300, 4000, 0.5, 'video_oynatıcı.jpg', 0, 0),
+(13, 'kutu', 0, 0, 0, '', 0, 0),
+(14, 'kapı', 0, 0, 0, '', 0, 0),
+(15, 'kalem', 0, 0, 0, 'kalem.jpg', 0, 1),
+(16, 'operator', 0, 0, 0, '', 0, 0),
+(17, 'megafon', 0, 0, 0, 'megafon.jpg', 80000, 1),
+(18, 'kılıf', 0, 0, 0, '', 10, 0),
+(19, 'mouse', 200, 1000, 0.4, '', 0, 0),
+(20, 'fan', 0, 0, 0.7, '', 0, 0),
+(21, 'fan', 100, 300, 0, '', 0, 0),
+(22, 'kumanda', 20, 150, 0.4, 'k.png', 400000, 1),
+(23, 'mouse', 200, 1000, 0.4, '', 0, 0),
+(24, 'modem', 20, 300, 0, '', 4000, 1);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -86,7 +86,7 @@ ALTER TABLE `products`
 -- Tablo için AUTO_INCREMENT değeri `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

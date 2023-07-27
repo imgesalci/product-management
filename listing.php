@@ -1,7 +1,7 @@
 <?php
 include('inserting.php');
-    $query = "SELECT * FROM products WHERE isDeleted = 1";
-    $result = $conn->query($query);
+$query = "SELECT * FROM products WHERE isDeleted = 1";
+$result = mysqli_query($conn, $query);
     
 ?>  
     <head>
@@ -59,7 +59,7 @@ include('inserting.php');
                 <td align="center"><button class="edit" data-id="<?php echo $data['id']; ?>">Güncelle</button></td>
                 <td align="center">
                     <form action="" method="post">
-                        <button class='btn' type="button" name='delete' data-id="<?php echo $data['id']; ?>">Sil</button>
+                        <button class='btn' type="submit" name='delete' data-id="<?php echo $data['id'];?>">Sil</button>
                     </form>
                 </td>
 

@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <?php
-ini_set('display_errors', '1');
-
-$servername = 'localhost';
-$database = 'php';
-$username = 'root';
-$password = '';
-$conn = mysqli_connect($servername, $username, $password, $database);
-mysqli_select_db($conn, $database);
-if (!$conn) {die("Connection failed: ".mysqli_connect_error());}
-
+include('database.php');
 function checkEmpty(&$parameter){
   if(empty($parameter)){
     $parameter = null;
   }
+  else{
+    $parameter = filter_var($parameter, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+  }
 }
+
 if (isset($_POST['submit']))
 {
-    $urun_adi   = $_POST["urun_adi"];
+    $urun_adi   = mysqli_real_escape_string($conn, $_POST["urun_adi"]);
     $alis_fiyati  = $_POST["alis_fiyati"];
     $satis_fiyati   = $_POST["satis_fiyati"];
     $kdv  = $_POST["kdv"];
@@ -33,7 +28,7 @@ if (isset($_POST['submit']))
 
     $query = "INSERT INTO products SET id = $id, ürün_adı= '$urun_adi', alış_fiyatı='$alis_fiyati', satış_fiyatı='$satis_fiyati', kdv_oranı='$kdv', ürün_resmi='$urun_resmi', stok_durumu='$stok', isDeleted=$isDeleted";
     if (mysqli_query($conn, $query)) {
-      echo "New record created successfully";
+      header("Location: listing.php");
     }else {
       echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }        
@@ -113,7 +108,7 @@ if (isset($_POST['submit']))
         .input{
           background-color: #f1f6fa;
           border: 2px solid #47555e;
-          border-radius: 4px;
+          border-radius: 10px;
         }
 
         body {
@@ -122,11 +117,18 @@ if (isset($_POST['submit']))
           margin: auto;
           color: #47555e;
         }
+        .warning {
+          background-color: #d7e4f1;
+          border-left: 6px solid #7aa5d2;
+        }
         </style>
         
     </head>
     <body>
       <form action="" method = "POST">
+        <div class="warning">
+            <p><strong>Uyarı!</strong> Lütfen kesirli ifadeler için nokta kullanın.</p>
+        </div>
         <div class="box"; style="width:360px;height:500px;border:.5px;">
           &nbsp;<br>Ürün Adı*<br>&nbsp;
           <input name="urun_adi" class="input" size="30" style="height:30px"  type="text" required>
@@ -140,7 +142,8 @@ if (isset($_POST['submit']))
           <input name="urun_resmi" class="input" size="30" style="height:30px"  type="text">
           <br><br>&nbsp;Stok Durumu<br>&nbsp;
           <input name="stok" class="input" size="30" style="height:30px"  type="int">
-          <br><br>&nbsp;&nbsp;&nbsp;
+          <br>
+          <br>&nbsp;&nbsp;&nbsp;
           <button type ="submit" name="submit" class="sbmt"> Ekle </button>
           <br><br>
         </div><br>
