@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 27 Tem 2023, 16:46:20
+-- Üretim Zamanı: 31 Tem 2023, 22:31:32
 -- Sunucu sürümü: 10.4.28-MariaDB
 -- PHP Sürümü: 8.2.4
 
@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `ürün_adı` text NOT NULL,
-  `alış_fiyatı` float DEFAULT 0,
-  `satış_fiyatı` float DEFAULT 0,
-  `kdv_oranı` float DEFAULT 0,
-  `ürün_resmi` text DEFAULT NULL,
-  `stok_durumu` int(11) DEFAULT 0,
+  `productName` text NOT NULL,
+  `purchasePrice` float DEFAULT 0,
+  `salePrice` float DEFAULT 0,
+  `vatRate` float DEFAULT 0,
+  `productImage` text DEFAULT NULL,
+  `stockStatus` int(11) DEFAULT 0,
   `isDeleted` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,31 +42,17 @@ CREATE TABLE `products` (
 -- Tablo döküm verisi `products`
 --
 
-INSERT INTO `products` (`id`, `ürün_adı`, `alış_fiyatı`, `satış_fiyatı`, `kdv_oranı`, `ürün_resmi`, `stok_durumu`, `isDeleted`) VALUES
-(1, 'televizyon', 30, 400, 0, '', 9000, 1),
-(2, 'tablet', 0, 3500, 0.8, '', 300, 1),
-(3, 'telefon', 0, 9000, 0, '', 0, 1),
-(4, 'akıllı saat', 0, 0, 0, '', 0, 1),
-(5, 'kulaklık', 0, 0, 0, '', 0, 1),
-(6, 'masaüstü bilgisayar', 2000, 15000, 0.9, 'pc.png', 400, 1),
-(7, 'sandalye', 3, 9, 0.4, 'sandalye.png', 1, 0),
-(8, 'laptop', 0, 0, 0, '', 3000, 1),
-(9, 'şişe', 5, 0, 0.3, 'sise.jpg', 0, 0),
-(10, 'tabak', 0, 0, 0, '', 10000, 1),
-(11, 'pipet', 0, 0, 0, '', 0, 0),
-(12, 'video oynatıcısı', 300, 4000, 0.5, 'video_oynatıcı.jpg', 0, 0),
-(13, 'kutu', 0, 0, 0, '', 0, 0),
-(14, 'kapı', 0, 0, 0, '', 0, 0),
-(15, 'kalem', 0, 0, 0, 'kalem.jpg', 0, 1),
-(16, 'operator', 0, 0, 0, '', 0, 0),
-(17, 'megafon', 0, 0, 0, 'megafon.jpg', 80000, 1),
-(18, 'kılıf', 0, 0, 0, '', 10, 0),
-(19, 'mouse', 200, 1000, 0.4, '', 0, 0),
-(20, 'fan', 0, 0, 0.7, '', 0, 0),
-(21, 'fan', 100, 300, 0, '', 0, 0),
-(22, 'kumanda', 20, 150, 0.4, 'k.png', 400000, 1),
-(23, 'mouse', 200, 1000, 0.4, '', 0, 0),
-(24, 'modem', 20, 300, 0, '', 4000, 1);
+INSERT INTO `products` (`id`, `productName`, `purchasePrice`, `salePrice`, `vatRate`, `productImage`, `stockStatus`, `isDeleted`) VALUES
+(1, 'tv', 200, 1300, 0, 'tv.jpg', 600, 1),
+(2, 'mobile phone', 100, 900, 0, '', 0, 0),
+(3, 'tablet', 0, 0, 0.01, '', 0, 1),
+(4, 'mouse', 30, 200, 0.03, 'mouse.png', 0, 0),
+(5, 'keyboard', 50, 0, 0.02, 'keyboard.jpeg', 10000, 1),
+(6, 'remote controller', 0, 30, 0, '', 0, 1),
+(7, 'fan', 40, 0, 0, 'fan.png', 300, 0),
+(8, 'joystick', 0, 0, 0.06, '', 0, 0),
+(9, 'monitor', 0, 0, 0, '', 7000, 1),
+(10, 'kettle', 0, 0, 0, '', 2000, 0);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -86,7 +72,7 @@ ALTER TABLE `products`
 -- Tablo için AUTO_INCREMENT değeri `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

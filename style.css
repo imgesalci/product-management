@@ -88,3 +88,24 @@ body {
     background-color: #d7e4f1;
     border-left: 6px solid #7aa5d2;
   }
+
+::after table {
+    border-collapse: collapse;
+}
+
+table th {
+    background-color: #303841;
+    color: #f7f7f7;
+    border-radius: 2px;
+}
+
+table td {
+    background-color: #eeeeee;
+    border: 1px solid #47555e;
+    border-radius: 2px;
+    padding: 10px 20px;
+}
+
+table tr:hover td {
+    background-color: #d7e4f1;
+}

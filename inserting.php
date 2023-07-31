@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <?php
 include('database.php');
-function checkEmpty(&$parameter)
-{
-  if (empty($parameter)) {
-    $parameter = null;
-  } else {
-    $parameter = filter_var($parameter, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-  }
-}
 
 if (isset($_POST['submit'])) {
-  $product_name   = mysqli_real_escape_string($conn, $_POST["pName"]);
-  $puchase_price  = $_POST["pPrice"];
-  $sale_price   = $_POST["sPrice"];
-  $vat  = $_POST["vat"];
-  $product_image   = $_POST["pImage"];
-  $stock  = $_POST["stock"];
+  $product_name = filter_var($_POST["pName"], FILTER_SANITIZE_SPECIAL_CHARS);
+  $purchase_price = filter_var($_POST["pPrice"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+  $sale_price = filter_var($_POST["sPrice"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+  $vat = filter_var($_POST["vat"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+  $product_image = filter_var($_POST["pImage"], FILTER_SANITIZE_SPECIAL_CHARS);
+  $stock = filter_var($_POST["stock"], FILTER_SANITIZE_NUMBER_INT);
   $id = 0;
   $isDeleted = 1;
 
-  checkEmpty($purchase_price);
-  checkEmpty($sale_price);
-  checkEmpty($vat);
-  checkEmpty($stock);
+  $query = "INSERT INTO products (id, productName, purchasePrice, salePrice, vatRate, productImage, stockStatus, isDeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+  $stmt = mysqli_prepare($conn, $query);
+  mysqli_stmt_bind_param($stmt, "isdddsii", $id, $product_name, $purchase_price, $sale_price, $vat, $product_image, $stock, $isDeleted);
 
-  $query = "INSERT INTO products SET id = $id, productName= '$product_name', purchasePrice='$puchase_price', salePrice='$sale_price', vatRate='$vat', productImage='$product_image', stockStatus='$stock', isDeleted=$isDeleted";
-  if (mysqli_query($conn, $query)) {
+  if (mysqli_stmt_execute($stmt)) {
     header("Location: listing.php");
   } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error occurred while inserting data.";
   }
+  mysqli_stmt_close($stmt);
 }
 
 ?>
@@ -48,22 +39,22 @@ if (isset($_POST['submit'])) {
     </div>
     <div class="box" ; style="width:360px;height:500px;border:.5px;">
       &nbsp;<br>*Product Name<br>&nbsp;
-      <input name="pName" class="input" size="30" style="height:30px" type="text" required>
+      <input name="pName" class="input" size="36" style="height:35px" type="text" maxlength="40" required>
       <br><br>&nbsp;Purchase Price<br>&nbsp;
-      <input name="pPrice" class="input" size="30" style="height:30px" type="float">
+      <input name="pPrice" class="input" size="36" style="height:35px" min="0" type="float">
       <br><br>&nbsp;Sale Price<br>&nbsp;
-      <input name="sPrice" class="input" size="30" style="height:30px" type="float">
+      <input name="sPrice" class="input" size="36" style="height:35px" min="0" type="float">
       <br><br>&nbsp;VAT Rate<br>&nbsp;
-      <input name="vat" class="input" size="30" style="height:30px" type="float">
+      <input name="vat" class="input" size="36" style="height:35px" min="0" type="float">
       <br><br>&nbsp;Product Image<br>&nbsp;
-      <input name="pImage" class="input" size="30" style="height:30px" type="text">
+      <input name="pImage" class="input" size="36" style="height:35px" type="file">
       <br><br>&nbsp;Stock Status<br>&nbsp;
-      <input name="stock" class="input" size="30" style="height:30px" type="int">
+      <input name="stock" class="input" size="36" style="height:35px" min="0" type="int">
       <br>
       <br>&nbsp;&nbsp;&nbsp;
       <button type="submit" name="submit" class="sbmt"> Submit </button>
       <br><br>
-    </div><br>
+    </div><br><br><br>
   </form>
 </body>
 

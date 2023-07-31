@@ -1,19 +1,21 @@
 $(document).ready(function () {
     $('.btn').on('click', function () {
-        var id = $(this).data('id'); 
-        $.ajax({
-            type: 'POST',
-            url: './deleting.php',
-            data: { id: id },
-            success: function (response) {
-                if (response.includes("successfully restored") || response.includes("Row deleted")) {
-                    $(this).closest('tr').remove();
-                    location.reload();
+        var button = $(this);
+        var id = $(this).data('id');
+        if (confirm("Do you want to delete this row?")) {
+            $.ajax({
+                type: 'POST',
+                url: './deleting.php',
+                data: { id: id },
+                success: function (response) {
+                    alert(response);
+                    button.closest('tr').remove();
+                    window.location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr);
                 }
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr);
-            }
-        });
+            });
+        }
     });
 });

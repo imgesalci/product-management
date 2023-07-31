@@ -5,32 +5,16 @@ if (isset($_POST['id'])) {
     if ($index >= 0) {
         $index = intval($index);
 
-        $query = "SELECT * FROM products WHERE isDeleted = 0 LIMIT $index";
-        $result = mysqli_query($conn, $query);
-        if (!$result) {
-            die(mysqli_error($conn));
-        }
+        $query = "UPDATE products SET isDeleted = 0 WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $index);
 
-        $row = mysqli_fetch_assoc($result);
-        if (empty($row)) {
-            echo "Row not found or already restored.";
+        if (mysqli_stmt_execute($stmt)) {
+            echo "Row successfully deleted.";
         } else {
-            $count = $row[0];
-            if (empty($count)) {
-                echo "empty";
-            }
-            $id = $index + $count;
-            $query = "UPDATE products SET isDeleted = 0 WHERE id = ?";
-
-            $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, "i", $id);
-
-            if (mysqli_stmt_execute($stmt)) {
-                echo "Row with ID $id successfully removed.";
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+            echo "Error occurred while deleting the data.";
         }
+        mysqli_stmt_close($stmt);
     }
 } else {
     echo "Invalid request.";
