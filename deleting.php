@@ -1,14 +1,14 @@
 <?php
-include('database.php'); 
+include('database.php');
 if (isset($_POST['id'])) {
-    $index = intval($_POST['id']); 
+    $index = intval($_POST['id']);
     if ($index >= 0) {
-        $index = intval($index); 
+        $index = intval($index);
 
         $query = "SELECT * FROM products WHERE isDeleted = 0 LIMIT $index";
         $result = mysqli_query($conn, $query);
         if (!$result) {
-            die(mysqli_error($conn)); 
+            die(mysqli_error($conn));
         }
 
         $row = mysqli_fetch_assoc($result);
@@ -16,7 +16,9 @@ if (isset($_POST['id'])) {
             echo "Row not found or already restored.";
         } else {
             $count = $row[0];
-            if(empty($count)){echo "bos";}
+            if (empty($count)) {
+                echo "empty";
+            }
             $id = $index + $count;
             $query = "UPDATE products SET isDeleted = 0 WHERE id = ?";
 
@@ -24,7 +26,7 @@ if (isset($_POST['id'])) {
             mysqli_stmt_bind_param($stmt, "i", $id);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo "Row with ID $id successfully restored.";
+                echo "Row with ID $id successfully removed.";
             } else {
                 echo "Error: " . mysqli_error($conn);
             }
@@ -33,4 +35,3 @@ if (isset($_POST['id'])) {
 } else {
     echo "Invalid request.";
 }
-?>

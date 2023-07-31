@@ -3,7 +3,7 @@ $(document).ready(function () {
         var id = $(this).data('id'); 
         $.ajax({
             type: 'POST',
-            url: '/project/deleting.php',
+            url: './deleting.php',
             data: { id: id },
             success: function (response) {
                 if (response.includes("successfully restored") || response.includes("Row deleted")) {
