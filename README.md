@@ -28,10 +28,10 @@ The project consists of the following main files and functionalities:
     
 -update.js: This JavaScript file contains the AJAX code to handle the update operation for product records without a page refresh.
 
+-update_photo.php: This file handles the update of product photos. It receieves the desired photo's file name and updates the productImage in database.
+
 ## IMPORTANT NOTES
 This project is intended as a simple demonstration of CRUD functionality in PHP and MYSQL. For production use, consider implementing additional security measures, input validation, and error handling to ensure data integrity and user safety. 
-
-The product images in this demo project are stored as text URLs. For a production system, it's recommended to handle file uploads in a secure way.
 
 The MYSQL table in this project is an example for understanding the structure of the database accurately. 
 
