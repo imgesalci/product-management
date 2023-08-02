@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 31 Tem 2023, 22:31:32
+-- Üretim Zamanı: 02 Ağu 2023, 17:38:45
 -- Sunucu sürümü: 10.4.28-MariaDB
 -- PHP Sürümü: 8.2.4
 
@@ -33,8 +33,8 @@ CREATE TABLE `products` (
   `purchasePrice` float DEFAULT 0,
   `salePrice` float DEFAULT 0,
   `vatRate` float DEFAULT 0,
-  `productImage` text DEFAULT NULL,
   `stockStatus` int(11) DEFAULT 0,
+  `productImage` text DEFAULT NULL,
   `isDeleted` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,17 +42,18 @@ CREATE TABLE `products` (
 -- Tablo döküm verisi `products`
 --
 
-INSERT INTO `products` (`id`, `productName`, `purchasePrice`, `salePrice`, `vatRate`, `productImage`, `stockStatus`, `isDeleted`) VALUES
-(1, 'tv', 200, 1300, 0, 'tv.jpg', 600, 1),
-(2, 'mobile phone', 100, 900, 0, '', 0, 0),
-(3, 'tablet', 0, 0, 0.01, '', 0, 1),
-(4, 'mouse', 30, 200, 0.03, 'mouse.png', 0, 0),
-(5, 'keyboard', 50, 0, 0.02, 'keyboard.jpeg', 10000, 1),
-(6, 'remote controller', 0, 30, 0, '', 0, 1),
-(7, 'fan', 40, 0, 0, 'fan.png', 300, 0),
-(8, 'joystick', 0, 0, 0.06, '', 0, 0),
-(9, 'monitor', 0, 0, 0, '', 7000, 1),
-(10, 'kettle', 0, 0, 0, '', 2000, 0);
+INSERT INTO `products` (`id`, `productName`, `purchasePrice`, `salePrice`, `vatRate`, `stockStatus`, `productImage`, `isDeleted`) VALUES
+(1, 'tv', 200, 1300, 0, 600, 'television.png', 1),
+(2, 'mobile phone', 100, 900, 0, 0, 'mobilephone.jpg', 1),
+(3, 'tablet', 0, 0, 0.01, 0, '', 1),
+(4, 'mouse', 30, 200, 0.03, 0, 'mouse.png', 1),
+(5, 'keyboard', 50, 0, 0.02, 10000, 'keyboard.jpeg', 0),
+(6, 'remote controller', 0, 30, 0, 0, 'remote-controller.png', 1),
+(7, 'fan', 40, 0, 0, 300, NULL, 1),
+(8, 'joystick', 0, 0, 0.06, 0, '', 1),
+(9, 'monitor', 0, 0, 0, 5000, 'monitor.jpeg', 1),
+(10, 'kettle', 0, 200, 0.01, 2000, '', 1),
+(11, 'air conditioner', 0, 0, 0, 6300, 'airconditioner.jpg', 1);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -72,7 +73,7 @@ ALTER TABLE `products`
 -- Tablo için AUTO_INCREMENT değeri `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

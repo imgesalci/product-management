@@ -31,7 +31,7 @@ $(document).ready(function () {
             ...dataToUpdate,
           },
           success: function (response) {
-            alert(response); 
+            alert(response);
             row.removeClass("editing").find(".editable").each(function () {
               var prevValue = $(this).data("prev-value");
               var column = $(this).data("column");

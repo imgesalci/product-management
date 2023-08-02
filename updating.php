@@ -7,12 +7,11 @@ if (isset($_POST['update'])) {
   $purchase_price = filter_var($_POST["pPrice"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
   $sale_price = filter_var($_POST["sPrice"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
   $vat = filter_var($_POST["vat"], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-  $product_image = filter_var($_POST["pImage"], FILTER_SANITIZE_SPECIAL_CHARS);
   $stock = filter_var($_POST["stock"], FILTER_SANITIZE_NUMBER_INT);
 
-  $query = "UPDATE products SET productName = ?, purchasePrice = ?, salePrice = ?, vatRate = ?, productImage = ?, stockStatus = ? WHERE id = ?";
+  $query = "UPDATE products SET productName = ?, purchasePrice = ?, salePrice = ?, vatRate = ?, stockStatus = ? WHERE id = ?";
   $stmt = mysqli_prepare($conn, $query);
-  mysqli_stmt_bind_param($stmt, "sdddssi", $product_name, $purchase_price, $sale_price, $vat, $product_image, $stock, $id);
+  mysqli_stmt_bind_param($stmt, "sdddsi", $product_name, $purchase_price, $sale_price, $vat, $stock, $id);
 
   if (mysqli_stmt_execute($stmt)) {
     echo "Record updated successfully";
