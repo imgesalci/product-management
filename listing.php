@@ -1,6 +1,6 @@
 <?php
 include('inserting.php');
-$query = "SELECT id, productName, purchasePrice, salePrice, vatRate, productImage, stockStatus FROM products WHERE isDeleted = 1";
+$query = "SELECT id, productName, purchasePrice, salePrice, vatRate, productImage, stockStatus, categoryName FROM products LEFT OUTER JOIN categories on products.categoryID = categories.categoryID WHERE isDeleted = 1";
 $stmt = mysqli_prepare($conn, $query);
 ?>
 
@@ -13,6 +13,7 @@ $stmt = mysqli_prepare($conn, $query);
 <table style="width:100%" cellspacing="0" cellpadding="10">
     <tr>
         <th>#</th>
+        <th>Category Name</th>
         <th>Product Name</th>
         <th>Purchase Price</th>
         <th>Sale Price</th>
@@ -23,16 +24,17 @@ $stmt = mysqli_prepare($conn, $query);
     </tr>
     <?php
     if (mysqli_stmt_execute($stmt)) {
-        mysqli_stmt_bind_result($stmt, $id, $product_name, $purchase_price, $sale_price, $vat, $product_image, $stock);
+        mysqli_stmt_bind_result($stmt, $id, $product_name, $purchase_price, $sale_price, $vat, $product_image, $stock, $categoryName);
         $sn = 1;
         while (mysqli_stmt_fetch($stmt)) {
     ?>
             <tr>
                 <td><?php echo $sn; ?> </td>
+                <td data-column="cName"><?php echo $categoryName; ?></td>
                 <td class="editable" data-column="pName"><?php echo $product_name; ?></td>
                 <td class="editable" data-column="pPrice"><?php echo $purchase_price; ?></td>
                 <td class="editable" data-column="sPrice"><?php echo $sale_price; ?></td>
-                <td class="editable" data-column="vat"><?php echo $vat; ?></td>
+                <td class="editable" data-column="vat"><?php echo $vat; ?>%</td>
                 <td class="editable" data-column="stock"><?php echo $stock; ?></td>
                 <td align="center"><img src="<?php echo './uploads/' . $product_image; ?>" alt="" width:"200" height="100" /></td>
                 <td align="center">
