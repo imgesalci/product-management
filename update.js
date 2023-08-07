@@ -8,8 +8,9 @@ $(document).ready(function () {
         row.addClass("editing").find(".editable").each(function () {
           var column = $(this).data("column");
           var value = $(this).text().trim();
-          $(this).data("prev-value", value); // Store the previous value
-          $(this).html(`<input type="text" name="${column}" value="${value}"/>`);
+          $(this).data("prev-value", value);
+          $(this).empty().append($('<input>').attr('type', 'text').attr('name', column).val(value));
+
         });
       } else {
         // Get the ID of the row
