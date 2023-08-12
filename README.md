@@ -1,6 +1,6 @@
 # PRODUCT MANAGEMENT SYSTEM
     
-The Product Management System is a simple web application mainly built with PHP and MYSQL that allows users to manage product information. It provides basic CRUD(Create, Read, Update, Delete) functionality for product records.
+The Product Management System is a web application designed for basic product management tasks. It allows users to perform CRUD (Create, Read, Update, Delete) operations on product records. This README provides an overview of the project's features, files, and how to set it up.
 
 ### FEATURES
 -Add new products with various details, including product name, prices, taxes, stock status, and an optional image.
@@ -24,15 +24,18 @@ The project consists of the following main files and functionalities:
     
 -update.php: This file handles the update of product information. It receives the updated product data from the AJAX request and updates the corresponding record in the database.
 
--update_photo.php: This file handles the update of product photos. It receieves the desired photo's file name and updates the productImage in database.
+-update_photo.php: Manages the update of product photos. It accepts the desired photo's file name and updates the `productImage` field in the database. Security measures include:
+- Checking for file upload errors and handling them appropriately.
+- Storing uploaded files in a secure directory.
     
 -delete.js: This JavaScript file contains the AJAX code to send the id of the data to deleting.php file in order to delete the data according the id.
     
 -update.js: This JavaScript file contains the AJAX code to handle the update operation for product records without a page refresh.
 
 ## IMPORTANT NOTES
-This project is intended as a simple demonstration of CRUD functionality in PHP and MYSQL. For production use, consider implementing additional security measures, input validation, and error handling to ensure data integrity and user safety. 
+- Security: The project includes several security measures such as input validation, data sanitization, handling file uploads securely, and using prepared statements for database queries. However, for production use, consider additional security audits and implementing user authentication.
 
-The MYSQL table in this project is an example for understanding the structure of the database accurately. 
+- Database Structure: The provided MySQL table structure is an example for educational understanding. In a real-world scenario, a more comprehensive and organized database structure might be required.
 
-The code provided in this project is for educational purposes and may require additional improvements for a real-world application.
+- Improvements: This project serves as a basic example of CRUD functionality. Depending on your use case, consider adding user authentication, input validation, and error handling to create a robust and secure application.
+
