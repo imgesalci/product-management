@@ -35,7 +35,7 @@ The project consists of the following main files and functionalities:
 ## IMPORTANT NOTES
 - Security: The project includes several security measures such as input validation, data sanitization, handling file uploads securely, and using prepared statements for database queries. However, for production use, consider additional security audits and implementing user authentication.
 
-- Database Structure: The provided MySQL table structure is an example for educational understanding. In a real-world scenario, a more comprehensive and organized database structure might be required.
+- Database Structure: The provided MySQL table structure is an example for understanding the structure of the database.
 
 - Improvements: This project serves as a basic example of CRUD functionality. Depending on your use case, consider adding user authentication, input validation, and error handling to create a robust and secure application.
 
